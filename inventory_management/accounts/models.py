@@ -2,7 +2,7 @@ from django.db import models
 from phone_field import PhoneField
 
 
-class Customer(models.Model):
+class Account(models.Model):
 
     """ Customer Model Definition """
 

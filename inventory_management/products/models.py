@@ -10,4 +10,4 @@ class Product(models.Model):
     content = models.TextField()
     price = models.IntegerField()
     amount = models.IntegerField()
-    # account = models.ForeignKey("accounts.Account")
+    account = models.ForeignKey("accounts.Account", on_delete=models.CASCADE)
