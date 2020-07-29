@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<p><strong>{{account.name}}</strong></p>
+<p>{{account.phone_number}}</p>
+<p>{{account.address}}</p>
+<br><br>
+<p>List of Products</p>
+<ul>
+  {% for product in products %}
+    <p><a href="{% url 'products:product_details' pk=product.pk %}">{{ product.title }}</a></p>
+  {% endfor %}
+</ul>
+
+<br /><br />
+<button>
+  <a href="{% url 'accounts:account_update' pk=account.pk %}">Update</a>
+</button>
+<button>
+  <a href="{% url 'accounts:account_delete' pk=account.pk %}">Delete</a>
+</button>
+<button>
+  <a href="{% url 'accounts:accounts_list' %}">Back to the List</a>
+</button>
+{% endblock content %}

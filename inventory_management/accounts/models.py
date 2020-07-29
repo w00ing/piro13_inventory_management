@@ -7,6 +7,6 @@ class Account(models.Model):
     """ Customer Model Definition """
 
     name = models.CharField(max_length=25)
-    phone_number = PhoneField()
+    phone_number = models.CharField(max_length=11)
     address = models.CharField(max_length=140)
 

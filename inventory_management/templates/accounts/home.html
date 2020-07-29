@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<h2 class="content__name">Account List</h2>
+<p class="content_description">This is an account list</p>
+<div class="accounts__container">
+  <ul class="accounts__list">
+    {% for account in accounts %}
+    <li>
+      <a href="{% url 'accounts:account_details' pk=account.pk %}">
+        <p><strong>{{account.name}}</strong></p>
+        <p>Price: {{account.phone_number}}</p>
+        <p>Amount: {{account.address}}</p>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock content %}

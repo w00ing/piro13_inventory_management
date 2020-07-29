@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<img src="{{product.image.url}}" alt="img" width="200" height="200" />
+<p><strong>{{product.title}}</strong></p>
+<p>Price: {{product.price}}</p>
+<p>Amount Left: {{product.amount}}</p>
+<p>Product Description:</p>
+<p>{{product.content}}</p>
+<span
+  ><strong>Account: </strong
+  ><a href="{% url 'accounts:account_details' pk=account.pk %}"
+    >{{product.account.name}}</a
+  ></span
+>
+<br /><br />
+<button>
+  <a href="{% url 'products:product_update' pk=product.pk %}">Update</a>
+</button>
+<button>
+  <a href="{% url 'products:product_delete' pk=product.pk %}">Delete</a>
+</button>
+<button>
+  <a href="{% url 'products:products_list' %}">Back to the List</a>
+</button>
+{% endblock content %}
