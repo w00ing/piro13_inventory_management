@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,5 +17,27 @@
       {% block content %}{% endblock content %}
     </div>
     {% include "partials/footer.html" %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        function clickButton (pk, status) {
+            console.log(pk); //확인용
+            console.log(status);
+            $.ajax({
+                type: "post",
+                url: "{% url 'products:amount_ajax' %}",
+                data: {"pk": pk, "status": status, "csrfmiddlewaretoken": "{{ csrf_token }}"},
+                success: function (response) {
+                    console.log("success");
+                    let a = document.getElementById(`amount-${pk}`);
+
+                    a.innerText = `남은 수량 : ${response.amount}`;
+                }, error: function (request, status, error) { // 통신 실패
+                    alert("fail");
+                },
+            })
+        }
+    </script>
+
   </body>
 </html>

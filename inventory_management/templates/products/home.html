@@ -9,10 +9,22 @@
         <img src="{{product.image.url}}" alt="img" width="200" height="200" />
         <p><strong>{{product.title}}</strong></p>
         <p>Price: {{product.price}}</p>
-        <p>Amount: {{product.amount}}</p>
+        <div id="amount-{{product.pk}}" class="amount">
+          Amount: {{product.amount}}
+        </div>
       </a>
-        <button id="plus">+</button>
-        <button id="minus">-</button>
+      <input
+        type="submit"
+        onclick="clickButton({{ product.pk }},'plus')"
+        value="+"
+        class="button"
+      />
+      <input
+        type="submit"
+        onclick="clickButton({{ product.pk }},'minus')"
+        value="-"
+        class="button"
+      />
     </li>
     {% endfor %}
   </ul>

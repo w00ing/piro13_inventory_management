@@ -1,5 +1,8 @@
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.views.decorators.http import require_POST
+
 from .models import Product
 from accounts.models import Account
 
@@ -10,6 +13,27 @@ def products_list(request):
         "products": queryset,
     }
     return render(request, "products/home.html", context=context)
+
+
+@require_POST
+def amount_ajax(request):
+    pk = request.POST.get("pk")
+    status = request.POST.get("status")
+    product = get_object_or_404(Product, pk=pk)
+
+    if status == "plus":
+        product.amount += 1
+    else:
+        if product.amount > 0:
+            product.amount -= 1
+        else:
+            redirect("products_list")
+
+    product.save()
+    ctx = {
+        "amount": product.amount,
+    }
+    return JsonResponse(ctx)
 
 
 def product_register(request):
